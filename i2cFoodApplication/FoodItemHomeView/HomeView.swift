@@ -13,8 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         
-        VStack {
-            
+        VStack(spacing: -25) {
             SliderView()
                 .frame(width: sides.width)
             
