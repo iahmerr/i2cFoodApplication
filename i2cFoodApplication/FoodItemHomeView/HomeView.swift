@@ -11,17 +11,18 @@ struct HomeView: View {
     
     private let sides = UIScreen.main.bounds
     
-    let service = FoodMenuService()
     var body: some View {
         
         VStack {
             
             SliderView()
-                .frame(width: sides.width, height: sides.height * 0.65)
+                .frame(width: sides.width)
             
             MenuCardForTheDay(viewModel: MenuCardViewModel(service: FoodMenuService()))
-                .frame(width: sides.width, height: self.sides.height * 0.5, alignment: .center)
-                .offset(y: -30).ignoresSafeArea()
+                .frame(width: sides.width, alignment: .center)
+                .ignoresSafeArea()
+            
+            Spacer()
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()

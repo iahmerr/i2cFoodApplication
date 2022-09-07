@@ -24,7 +24,7 @@ struct MenuCardForTheDay: View {
                             Text("Lunch").tag(0)
                             Text("Dinner").tag(1)
             }
-            .pickerStyle(.segmented).padding([.leading, .trailing, .top])
+            .pickerStyle(.segmented).padding([.leading, .trailing])
             
             List {
                 Section(header: Text(viewModel.firstSectionHeader)) {
@@ -40,22 +40,22 @@ struct MenuCardForTheDay: View {
             }.foregroundColor(.blue)
                 .sheet(isPresented: self.$isToggle) {
                     FoodThisWeek(viewModel: FoodThisWeekViewModel(lunch: viewModel.upcomingLunchMenus, dinner: viewModel.upcomingDinnerMenus))
-                }
+                }.padding(.bottom, 30)
             
-            Spacer()
-            
-        }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        }.frame(maxWidth: .infinity)
             .ignoresSafeArea()
             .background(Color.white)
+            .padding(.bottom, 20)
             .cornerRadius(20)
+            .padding(.bottom, -20)
+            .padding(.top)
             .shadow(radius: 7)
-            .padding(.bottom, -40)
 
     }
 }
 
 struct MenuCardForTheDay_Previews: PreviewProvider {
     static var previews: some View {
-        MenuCardForTheDay(viewModel: MenuCardViewModel(service: FoodMenuService()))
+        MenuCardForTheDay(viewModel: MenuCardViewModel(service: FoodMenuService())).previewLayout(.sizeThatFits)
     }
 }

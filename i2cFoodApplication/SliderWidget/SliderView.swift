@@ -30,6 +30,6 @@ struct SliderView: View {
 
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderView()
+        SliderView().previewLayout(.sizeThatFits)
     }
 }
