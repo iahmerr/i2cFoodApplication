@@ -81,21 +81,13 @@ private extension MenuCardViewModel {
     }
     
     func getTodaysFood(foodMenu: FoodMenu) -> Food {
-        foodMenu.food.filter {[weak self] in (self?.getDate(dateString: $0.date))!}.first ?? Food(date: "None", day: "None", mainDish: "", sideDish: "", sweet: "")
-    }
-    
-    func getDate(dateString: String)-> Bool {
-        let formatter4 = DateFormatter()
-        formatter4.dateFormat = "d MMM y"
-        let calender = Calendar.current
-        return calender.isDateInToday(formatter4.date(from: dateString)!)
+        foodMenu.food.filter { $0.date.dateFromString().isToday }.first ?? Food(date: "None", day: "None", mainDish: "", sideDish: "", sweet: "")
     }
 }
 
 extension MenuCardViewModel {
     
     func getFoodForTheWeek(menu: FoodMenu)-> [Food] {
-        let calender = Calendar.current
-        return menu.food.filter { calender.isDateInThisWeek($0.date.dateFromString()) }
+        return menu.food.filter { $0.date.dateFromString().isDateInTheFuture }
     }
 }

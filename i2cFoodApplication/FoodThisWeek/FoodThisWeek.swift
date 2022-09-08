@@ -26,7 +26,6 @@ struct FoodThisWeek: View {
             
             Form {
                 ForEach(viewModel.menu, id: \.date) { food in
-                    
                     Section {
                         DishesCell(viewModel: DishesCellViewModel(menuName: "Main Dish", dishName: food.mainDish))
                         DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: food.sideDish))
@@ -39,8 +38,6 @@ struct FoodThisWeek: View {
                             
                             Text(food.day)
                         }
-                        
-                        
                     }
                 }
                 
