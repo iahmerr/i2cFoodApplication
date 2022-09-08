@@ -8,11 +8,16 @@
 import SwiftUI
 import Combine
 
-struct MenuCardForTheDay: View {
+struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
     
     @State var isToggle: Bool = false
+    
     @ObservedObject
-    var viewModel: MenuCardViewModel
+    private var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         
@@ -34,7 +39,7 @@ struct MenuCardForTheDay: View {
                 }
             }.listStyle(.plain).frame(width: UIScreen.main.bounds.width , height: 200, alignment: .center)
             
-            Button("Look what we offer this whole week") {
+            Button("Menu for upcoming days") {
                 isToggle.toggle()
             }.foregroundColor(.blue)
                 .sheet(isPresented: self.$isToggle) {

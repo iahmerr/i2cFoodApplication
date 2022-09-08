@@ -8,25 +8,23 @@
 import Foundation
 import Combine
 
-protocol MenuCardViewModelType {
-//    var headerText: String { get }
-//    var firstSectionHeader: String { get set }
-//    var segmentSelectionPublished: Published<Int> { get }
-    var segmentSelectionPublisher: PassthroughSubject<Int, Never> { get}
- //   var segmentSelection: Int { get set }
+protocol MenuCardViewModelType: ObservableObject {
+    var foodMenu: Food? { get set }
+    var segmentSelection: Int { get set }
+    var headerText: String { get set }
+    var firstSectionHeader: String { get set }
+    var upcomingLunchMenus: [Food] {get set }
+    var upcomingDinnerMenus: [Food] { get set }
 }
 
-final class MenuCardViewModel: ObservableObject /*, MenuCardViewModelType */ {
+final class MenuCardViewModel: MenuCardViewModelType {
     
+    
+    @Published
     var firstSectionHeader: String = "Lunch"
 
-    var headerText: String {
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .none
-        formatter.dateStyle = .long
-        return "Food For Today " + formatter.string(from: currentDateTime) + " is : "
-    }
+    @Published
+    var headerText: String = ""
     
     //MARK:- Outputs
     @Published var foodMenu: Food?
@@ -34,15 +32,15 @@ final class MenuCardViewModel: ObservableObject /*, MenuCardViewModelType */ {
     
     private var lunchMenu: Food?
     private var dinnerMenu: Food?
-    var upcomingLunchMenus: [Food] = []
-    var upcomingDinnerMenus: [Food] = []
+    @Published var upcomingLunchMenus: [Food] = []
+    @Published var upcomingDinnerMenus: [Food] = []
     var food: [Food] = []
     private var subscriptions: [AnyCancellable] = []
     private let service: FoodMenuServiceType
     
     init(service: FoodMenuServiceType) {
         self.service = service
-
+        self.headerText = getHeaderText()
         
         requestLunch()
         requestDinner()
@@ -52,6 +50,14 @@ final class MenuCardViewModel: ObservableObject /*, MenuCardViewModelType */ {
             self.foodMenu = valueß == 0 ? self.lunchMenu : self.dinnerMenu
             self.firstSectionHeader = valueß == 0 ? "Lunch Menu" : "Dinner Menu"
         }.store(in: &subscriptions)
+    }
+    
+    private func getHeaderText() -> String {
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .long
+        return "Food For Today " + formatter.string(from: currentDateTime) + " is : "
     }
     
     
