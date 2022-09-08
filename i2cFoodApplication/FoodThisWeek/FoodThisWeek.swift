@@ -18,23 +18,34 @@ struct FoodThisWeek: View {
     
     var body: some View {
         VStack {
-        Picker("What is your favorite color?", selection: self.$viewModel.segmentSelection) {
-                        Text("Lunch").tag(0)
-                        Text("Dinner").tag(1)
-        }
-        .pickerStyle(.segmented).padding([.leading, .trailing, .top])
-        
-        Form {
-            ForEach(viewModel.menu, id: \.date) { food in
-                Section("\(food.date)") {
-                    DishesCell(viewModel: DishesCellViewModel(menuName: "Main Dish", dishName: food.mainDish))
-                    DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: food.sideDish))
-                    DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: food.sweet))
-                }
+            Picker("What is your favorite color?", selection: self.$viewModel.segmentSelection) {
+                Text("Lunch").tag(0)
+                Text("Dinner").tag(1)
             }
-
-        }
-        }
+            .pickerStyle(.segmented).padding([.leading, .trailing, .top])
+            
+            Form {
+                ForEach(viewModel.menu, id: \.date) { food in
+                    
+                    Section {
+                        DishesCell(viewModel: DishesCellViewModel(menuName: "Main Dish", dishName: food.mainDish))
+                        DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: food.sideDish))
+                        DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: food.sweet))
+                    } header: {
+                        HStack {
+                            Text(food.date)
+                            
+                            Spacer()
+                            
+                            Text(food.day)
+                        }
+                        
+                        
+                    }
+                }
+                
+            }
+        }.padding(.top)
     }
 }
 

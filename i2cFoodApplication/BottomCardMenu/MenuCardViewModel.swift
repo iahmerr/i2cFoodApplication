@@ -36,7 +36,6 @@ final class MenuCardViewModel: ObservableObject /*, MenuCardViewModelType */ {
     private var dinnerMenu: Food?
     var upcomingLunchMenus: [Food] = []
     var upcomingDinnerMenus: [Food] = []
-    let showMenuForWholeWeek = PassthroughSubject<Bool, Never>()
     var food: [Food] = []
     private var subscriptions: [AnyCancellable] = []
     private let service: FoodMenuServiceType
@@ -100,31 +99,3 @@ extension MenuCardViewModel {
         return menu.food.filter { calender.isDateInThisWeek($0.date.dateFromString()) }
     }
 }
-
-/*
- 
-
-class issuesCheck: MenuCardViewModelType {
-    
-    @Published var name: Int = 0
-    let segmentSelectionPublisher = PassthroughSubject<Int, Never>()
-    private var subscriptions: [AnyCancellable] = []
-    
-    init(){
-        segmentSelectionPublisher.sink { value in
-            print(value)
-        }.store(in: &subscriptions)
-    }
-                                                        
-}
-
-struct ABC {
-    
-    private let viewModel: MenuCardViewModelType
-    
-    init(){
-        viewModel = issuesCheck()
-        viewModel.segmentSelectionPublisher.send(10)
-    }
-}
- */

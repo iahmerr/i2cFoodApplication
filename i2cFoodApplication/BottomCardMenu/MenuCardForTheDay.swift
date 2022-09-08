@@ -18,9 +18,9 @@ struct MenuCardForTheDay: View {
         
         VStack {
             
-            Text(viewModel.headerText).frame(maxWidth: .infinity, alignment: .leading).padding()
+            Text(viewModel.headerText).frame(maxWidth: .infinity, alignment: .center).font(.system(size: 14, weight: .semibold, design: .rounded)).lineLimit(nil).padding()
             
-            Picker("What is your favorite color?", selection: self.$viewModel.segmentSelection) {
+            Picker("", selection: self.$viewModel.segmentSelection) {
                             Text("Lunch").tag(0)
                             Text("Dinner").tag(1)
             }
@@ -35,12 +35,11 @@ struct MenuCardForTheDay: View {
             }.listStyle(.plain).frame(width: UIScreen.main.bounds.width , height: 200, alignment: .center)
             
             Button("Look what we offer this whole week") {
-                print("looking")
                 isToggle.toggle()
             }.foregroundColor(.blue)
                 .sheet(isPresented: self.$isToggle) {
                     FoodThisWeek(viewModel: FoodThisWeekViewModel(lunch: viewModel.upcomingLunchMenus, dinner: viewModel.upcomingDinnerMenus))
-                }.padding(.bottom, 30)
+                }.padding(.bottom, 60)
             
         }.frame(maxWidth: .infinity)
             .ignoresSafeArea()
