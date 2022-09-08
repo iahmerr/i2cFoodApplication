@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-struct DishesCell: View {
+struct DishesCell<ViewModel: DishesCellViewModelType>: View {
     
-    @ObservedObject var viewModel: DishesCellViewModel
+    @ObservedObject
+    private var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         HStack {

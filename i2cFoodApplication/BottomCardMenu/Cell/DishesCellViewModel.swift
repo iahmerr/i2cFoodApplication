@@ -7,9 +7,16 @@
 
 import Foundation
 
-final class DishesCellViewModel: ObservableObject {
+protocol DishesCellViewModelType: ObservableObject {
+    var menuName: String { get set }
+    var dishName: String { get set }
+}
+
+final class DishesCellViewModel: DishesCellViewModelType {
     
+    @Published
     var menuName: String
+    @Published
     var dishName: String
     
     init(menuName: String, dishName: String) {
