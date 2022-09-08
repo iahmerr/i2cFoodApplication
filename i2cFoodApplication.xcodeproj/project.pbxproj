@@ -88,7 +88,6 @@
 		4C6EA2AE28C0E36B00CF06A2 /* i2cFoodApplication */ = {
 			isa = PBXGroup;
 			children = (
-				4C3CAE4E28C8710E00B24327 /* FoodThisWeek */,
 				4C70E70128C7754300D85E83 /* Utility */,
 				4C6EA2D928C70F4500CF06A2 /* Errors */,
 				4C6EA2D628C70F0400CF06A2 /* Models */,
@@ -96,6 +95,7 @@
 				4C6EA2C428C1C83000CF06A2 /* FoodItemHomeView */,
 				4C6EA2BF28C1C77100CF06A2 /* SliderWidget */,
 				4C6EA2C528C1CAEB00CF06A2 /* BottomCardMenu */,
+				4C3CAE4E28C8710E00B24327 /* FoodThisWeek */,
 				4C6EA2AF28C0E36B00CF06A2 /* i2cFoodApplicationApp.swift */,
 				4C6EA2B328C0E36D00CF06A2 /* Assets.xcassets */,
 				4C6EA2B528C0E36D00CF06A2 /* Preview Content */,

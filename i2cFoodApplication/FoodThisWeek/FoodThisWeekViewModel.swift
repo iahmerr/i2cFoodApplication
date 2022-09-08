@@ -8,10 +8,17 @@
 import Foundation
 import Combine
 
-final class FoodThisWeekViewModel: ObservableObject {
+protocol FoodThisWeekViewModelType: ObservableObject {
+    var menu: [Food] { get set }
+    var segmentSelection: Int { get set }
+}
+
+final class FoodThisWeekViewModel: FoodThisWeekViewModelType {
     
-    @Published var menu: [Food]
-    @Published var segmentSelection = 0
+    @Published
+    var menu: [Food] = []
+    @Published
+    var segmentSelection = 0
     
     private var lunch: [Food] = []
     private var dinner: [Food] = []

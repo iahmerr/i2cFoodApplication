@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct FoodThisWeek: View {
+struct FoodThisWeek<ViewModel: FoodThisWeekViewModelType> : View {
     
     @ObservedObject
-    private var viewModel: FoodThisWeekViewModel
+    private var viewModel: ViewModel
     
-    init(viewModel: FoodThisWeekViewModel) {
+    init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         VStack {
-            Picker("What is your favorite color?", selection: self.$viewModel.segmentSelection) {
+            Picker("", selection: self.$viewModel.segmentSelection) {
                 Text("Lunch").tag(0)
                 Text("Dinner").tag(1)
             }
