@@ -19,22 +19,24 @@ protocol MenuCardViewModelType: ObservableObject {
 
 final class MenuCardViewModel: MenuCardViewModelType {
     
-    
+    //MARK:- Outputs
+    @Published
+    var foodMenu: Food?
+    @Published
+    var segmentSelection: Int = 0
+    @Published
+    var upcomingLunchMenus: [Food] = []
+    @Published
+    var upcomingDinnerMenus: [Food] = []
     @Published
     var firstSectionHeader: String = "Lunch"
-
     @Published
     var headerText: String = ""
     
-    //MARK:- Outputs
-    @Published var foodMenu: Food?
-    @Published var segmentSelection: Int = 0
-    
     private var lunchMenu: Food?
     private var dinnerMenu: Food?
-    @Published var upcomingLunchMenus: [Food] = []
-    @Published var upcomingDinnerMenus: [Food] = []
-    var food: [Food] = []
+
+    private var food: [Food] = []
     private var subscriptions: [AnyCancellable] = []
     private let service: FoodMenuServiceType
     
@@ -52,7 +54,8 @@ final class MenuCardViewModel: MenuCardViewModelType {
         }.store(in: &subscriptions)
     }
     
-    private func getHeaderText() -> String {
+    private
+    func getHeaderText() -> String {
         let currentDateTime = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .none
@@ -65,6 +68,7 @@ final class MenuCardViewModel: MenuCardViewModelType {
 
 private extension MenuCardViewModel {
     
+    private
     func requestLunch() {
         self.service.getLunchMenu().receive(on: RunLoop.main).sink { error in
             print(error)
@@ -76,6 +80,7 @@ private extension MenuCardViewModel {
         }.store(in: &subscriptions)
     }
     
+    private
     func requestDinner() {
         self.service.getDinnerMenu().receive(on: RunLoop.main).sink { error in
             print(error)
@@ -86,6 +91,7 @@ private extension MenuCardViewModel {
         }.store(in: &subscriptions)
     }
     
+    private
     func getTodaysFood(foodMenu: FoodMenu) -> Food {
         foodMenu.food.filter { $0.date.dateFromString().isToday }.first ?? Food(date: "None", day: "None", mainDish: "", sideDish: "", sweet: "")
     }
@@ -93,6 +99,7 @@ private extension MenuCardViewModel {
 
 extension MenuCardViewModel {
     
+    private
     func getFoodForTheWeek(menu: FoodMenu)-> [Food] {
         return menu.food.filter { $0.date.dateFromString().isDateInTheFuture }
     }
