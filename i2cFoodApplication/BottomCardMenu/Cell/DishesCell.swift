@@ -21,9 +21,9 @@ struct DishesCell<ViewModel: DishesCellViewModelType>: View {
             
             Text(viewModel.menuName)
             
-            Spacer()
+            Spacer(minLength: 70)
             
-            Text(viewModel.dishName)
+            Text(viewModel.dishName).lineLimit(nil).multilineTextAlignment(.center)
         }
     }
 }
