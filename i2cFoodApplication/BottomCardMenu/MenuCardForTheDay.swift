@@ -40,7 +40,9 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
             }.listStyle(.plain).frame(width: UIScreen.main.bounds.width , height: 200, alignment: .center)
             
             Button("Menu for upcoming days") {
-                isToggle.toggle()
+                if !viewModel.showMenuForUpcomingDays {
+                    isToggle.toggle()
+                }
             }.foregroundColor(.blue)
                 .sheet(isPresented: self.$isToggle) {
                     FoodThisWeek(viewModel: FoodThisWeekViewModel(lunch: viewModel.upcomingLunchMenus, dinner: viewModel.upcomingDinnerMenus))
@@ -54,6 +56,9 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
             .padding(.bottom, -20)
             .padding(.top)
             .shadow(radius: 7)
+            .alert(viewModel.errorText, isPresented: $viewModel.showAlert) {
+                Button("Okay", role: .cancel) { }
+            }
 
     }
 }

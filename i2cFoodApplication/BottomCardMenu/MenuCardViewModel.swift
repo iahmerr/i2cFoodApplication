@@ -15,6 +15,9 @@ protocol MenuCardViewModelType: ObservableObject {
     var firstSectionHeader: String { get set }
     var upcomingLunchMenus: [Food] {get set }
     var upcomingDinnerMenus: [Food] { get set }
+    var showAlert: Bool { get set }
+    var errorText: String { get set }
+    var showMenuForUpcomingDays: Bool { get set }
 }
 
 final class MenuCardViewModel: MenuCardViewModelType {
@@ -32,6 +35,12 @@ final class MenuCardViewModel: MenuCardViewModelType {
     var firstSectionHeader: String = "Lunch"
     @Published
     var headerText: String = ""
+    @Published
+    var showAlert: Bool = false
+    @Published
+    var errorText: String = ""
+    @Published
+    var showMenuForUpcomingDays: Bool = true
     
     private var lunchMenu: Food?
     private var dinnerMenu: Food?
@@ -93,7 +102,18 @@ private extension MenuCardViewModel {
     
     private
     func getTodaysFood(foodMenu: FoodMenu) -> Food {
-        foodMenu.food.filter { $0.date.dateFromString().isToday }.first ?? Food(date: "None", day: "None", mainDish: "", sideDish: "", sweet: "")
+        if let food = foodMenu.food.filter({ $0.date.dateFromString().isToday }).first {
+            self.showMenuForUpcomingDays = false
+            self.showAlert = false
+            self.errorText = ""
+            return food
+        }
+        else {
+            self.showAlert = true
+            self.errorText = "Hi! Menu is not updated yet. Please contact Ali Murad from iOS Team to update the menu of this month."
+            return Food(date: "", day: "", mainDish: "", sideDish: "", sweet: "")
+        }
+         
     }
 }
 
