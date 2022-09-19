@@ -80,6 +80,7 @@
 		4C6EA2A328C0E36B00CF06A2 = {
 			isa = PBXGroup;
 			children = (
+				4CAAF08A28D87DEC004D35CC /* [Screenshot] */,
 				4C6EA2AE28C0E36B00CF06A2 /* i2cFoodApplication */,
 				4C6EA2AD28C0E36B00CF06A2 /* Products */,
 			);
@@ -96,7 +97,6 @@
 		4C6EA2AE28C0E36B00CF06A2 /* i2cFoodApplication */ = {
 			isa = PBXGroup;
 			children = (
-				4CAAF08A28D87DEC004D35CC /* [Screenshot] */,
 				4C70E70128C7754300D85E83 /* Utility */,
 				4C6EA2D928C70F4500CF06A2 /* Errors */,
 				4C6EA2D628C70F0400CF06A2 /* Models */,
