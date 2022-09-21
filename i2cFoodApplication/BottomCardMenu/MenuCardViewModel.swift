@@ -18,6 +18,7 @@ protocol MenuCardViewModelType: ObservableObject {
     var showAlert: Bool { get set }
     var errorText: String { get set }
     var showMenuForUpcomingDays: Bool { get set }
+    var isToggle: Bool { get set }
 }
 
 final class MenuCardViewModel: MenuCardViewModelType {
@@ -41,6 +42,8 @@ final class MenuCardViewModel: MenuCardViewModelType {
     var errorText: String = ""
     @Published
     var showMenuForUpcomingDays: Bool = true
+    @Published
+    var isToggle: Bool = false
     
     private var lunchMenu: Food?
     private var dinnerMenu: Food?

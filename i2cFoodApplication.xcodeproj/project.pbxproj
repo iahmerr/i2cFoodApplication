@@ -25,10 +25,6 @@
 		4C6EA2DD28C70F8500CF06A2 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6EA2DC28C70F8500CF06A2 /* APIClient.swift */; };
 		4C6EA2DF28C7127400CF06A2 /* URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6EA2DE28C7127400CF06A2 /* URLRequestConvertible.swift */; };
 		4C70E70328C7755F00D85E83 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C70E70228C7755F00D85E83 /* Utilities.swift */; };
-		4CAAF08F28D87E08004D35CC /* Screenshot-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAF08B28D87E07004D35CC /* Screenshot-4.png */; };
-		4CAAF09028D87E08004D35CC /* Screenshot-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAF08C28D87E08004D35CC /* Screenshot-2.png */; };
-		4CAAF09128D87E08004D35CC /* Screenshot-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAF08D28D87E08004D35CC /* Screenshot-1.png */; };
-		4CAAF09228D87E08004D35CC /* Screenshot-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAAF08E28D87E08004D35CC /* Screenshot-3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,10 +47,6 @@
 		4C6EA2DC28C70F8500CF06A2 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4C6EA2DE28C7127400CF06A2 /* URLRequestConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConvertible.swift; sourceTree = "<group>"; };
 		4C70E70228C7755F00D85E83 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		4CAAF08B28D87E07004D35CC /* Screenshot-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot-4.png"; sourceTree = "<group>"; };
-		4CAAF08C28D87E08004D35CC /* Screenshot-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot-2.png"; sourceTree = "<group>"; };
-		4CAAF08D28D87E08004D35CC /* Screenshot-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot-1.png"; sourceTree = "<group>"; };
-		4CAAF08E28D87E08004D35CC /* Screenshot-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot-3.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +72,6 @@
 		4C6EA2A328C0E36B00CF06A2 = {
 			isa = PBXGroup;
 			children = (
-				4CAAF08A28D87DEC004D35CC /* [Screenshot] */,
 				4C6EA2AE28C0E36B00CF06A2 /* i2cFoodApplication */,
 				4C6EA2AD28C0E36B00CF06A2 /* Products */,
 			);
@@ -190,17 +181,6 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		4CAAF08A28D87DEC004D35CC /* [Screenshot] */ = {
-			isa = PBXGroup;
-			children = (
-				4CAAF08D28D87E08004D35CC /* Screenshot-1.png */,
-				4CAAF08C28D87E08004D35CC /* Screenshot-2.png */,
-				4CAAF08E28D87E08004D35CC /* Screenshot-3.png */,
-				4CAAF08B28D87E07004D35CC /* Screenshot-4.png */,
-			);
-			path = "[Screenshot]";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,12 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CAAF09128D87E08004D35CC /* Screenshot-1.png in Resources */,
 				4C6EA2B728C0E36D00CF06A2 /* Preview Assets.xcassets in Resources */,
-				4CAAF09228D87E08004D35CC /* Screenshot-3.png in Resources */,
-				4CAAF08F28D87E08004D35CC /* Screenshot-4.png in Resources */,
 				4C6EA2B428C0E36D00CF06A2 /* Assets.xcassets in Resources */,
-				4CAAF09028D87E08004D35CC /* Screenshot-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

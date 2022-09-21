@@ -10,8 +10,6 @@ import Combine
 
 struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
     
-    @State var isToggle: Bool = false
-    
     @ObservedObject
     private var viewModel: ViewModel
     
@@ -41,10 +39,10 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
             
             Button("Menu for upcoming days") {
                 if !viewModel.showMenuForUpcomingDays {
-                    isToggle.toggle()
+                    self.viewModel.isToggle.toggle()
                 }
             }.foregroundColor(.blue)
-                .sheet(isPresented: self.$isToggle) {
+                .sheet(isPresented: self.$viewModel.isToggle) {
                     FoodThisWeek(viewModel: FoodThisWeekViewModel(lunch: viewModel.upcomingLunchMenus, dinner: viewModel.upcomingDinnerMenus))
                 }.padding(.bottom, 60)
             
