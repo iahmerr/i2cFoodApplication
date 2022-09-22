@@ -14,9 +14,7 @@ protocol DishesCellViewModelType: ObservableObject {
 
 final class DishesCellViewModel: DishesCellViewModelType {
     
-    @Published
     var menuName: String
-    @Published
     var dishName: String
     
     init(menuName: String, dishName: String) {

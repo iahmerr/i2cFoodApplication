@@ -21,7 +21,10 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
         
         VStack {
             
-            Text(viewModel.headerText).frame(maxWidth: .infinity, alignment: .center).font(.system(size: 14, weight: .semibold, design: .rounded)).lineLimit(nil).padding()
+            Text(viewModel.headerText)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .lineLimit(nil).padding()
             
             Picker("", selection: self.$viewModel.segmentSelection) {
                             Text("Lunch").tag(0)
