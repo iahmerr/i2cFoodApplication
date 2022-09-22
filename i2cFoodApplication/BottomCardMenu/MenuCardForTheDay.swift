@@ -41,9 +41,7 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
             }.listStyle(.plain).frame(width: UIScreen.main.bounds.width , height: 200, alignment: .center)
             
             Button("Menu for upcoming days") {
-                if !viewModel.showMenuForUpcomingDays {
-                    self.viewModel.isToggle.toggle()
-                }
+                viewModel.toggleMenu()
             }.foregroundColor(.blue)
                 .sheet(isPresented: self.$viewModel.isToggle) {
                     FoodThisWeek(viewModel: FoodThisWeekViewModel(lunch: viewModel.upcomingLunchMenus, dinner: viewModel.upcomingDinnerMenus))

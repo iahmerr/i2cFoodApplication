@@ -19,6 +19,7 @@ protocol MenuCardViewModelType: ObservableObject {
     var errorText: String { get set }
     var showMenuForUpcomingDays: Bool { get set }
     var isToggle: Bool { get set }
+    func toggleMenu()
 }
 
 final class MenuCardViewModel: MenuCardViewModelType {
@@ -66,16 +67,11 @@ final class MenuCardViewModel: MenuCardViewModelType {
         }.store(in: &subscriptions)
     }
     
-    private
-    func getHeaderText() -> String {
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.timeStyle = .none
-        formatter.dateStyle = .long
-        return "Food For Today " + formatter.string(from: currentDateTime) + " is : "
+    func toggleMenu(){
+        if !showMenuForUpcomingDays {
+            isToggle.toggle()
+        }
     }
-    
-    
 }
 
 private extension MenuCardViewModel {
@@ -117,6 +113,15 @@ private extension MenuCardViewModel {
             return Food(date: "", day: "", mainDish: "", sideDish: "", sweet: "")
         }
          
+    }
+    
+    private
+    func getHeaderText() -> String {
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.dateStyle = .long
+        return "Food For Today " + formatter.string(from: currentDateTime) + " is : "
     }
 }
 
