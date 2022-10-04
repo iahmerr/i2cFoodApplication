@@ -13,8 +13,7 @@ protocol URLRequestConvertibleType {
 }
 
 enum Route: String {
-    case getLunchMenu = "/data.json"
-    case getDinnerMenu = "/dinner.json"
+    case monthlyMenu = "/uploads/menu.json"
 }
 
 enum HTTPMethod {
