@@ -25,14 +25,14 @@ struct FoodThisWeek<ViewModel: FoodThisWeekViewModelType> : View {
             .pickerStyle(.segmented).padding([.leading, .trailing, .top])
             
             Form {
-                ForEach(viewModel.menu, id: \.date) { food in
+                ForEach(viewModel.menu, id: (viewModel.isLunch ? \.lunchDate : \.dinnerDate)) { food in
                     Section {
                         DishesCell(viewModel: DishesCellViewModel(menuName: "Main Dish", dishName: food.mainDish))
-                        DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: food.sideDish))
-                        DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: food.sweet))
+                        DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: food.sideDish ?? ""))
+                        DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: food.sweetDish))
                     } header: {
                         HStack {
-                            Text(food.date)
+                            Text((viewModel.isLunch ? food.lunchDate ?? "" : food.dinnerDate) ?? "")
                             
                             Spacer()
                             

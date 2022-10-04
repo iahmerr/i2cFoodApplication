@@ -57,8 +57,7 @@ final class MenuCardViewModel: MenuCardViewModelType {
         self.service = service
         self.headerText = getHeaderText()
         
-        requestLunch()
-        requestDinner()
+        requestFood()
         
         $segmentSelection.sink {[weak self] valueß in
             guard let self = self else { return }
@@ -77,31 +76,22 @@ final class MenuCardViewModel: MenuCardViewModelType {
 private extension MenuCardViewModel {
     
     private
-    func requestLunch() {
-        self.service.getLunchMenu().receive(on: RunLoop.main).sink { error in
+    func requestFood(){
+        self.service.getMenu().receive(on: RunLoop.main).sink { error in
             print(error)
         } receiveValue: {[weak self] menu in
             guard let self = self else { return }
-            self.upcomingLunchMenus = self.getFoodForTheWeek(menu: menu)
-            self.lunchMenu = self.getTodaysFood(foodMenu: menu)
+            self.lunchMenu = self.getTodaysMenu(foodMenu: menu.lunchMenu, isLunch: true)
             self.foodMenu = self.lunchMenu
-        }.store(in: &subscriptions)
-    }
-    
-    private
-    func requestDinner() {
-        self.service.getDinnerMenu().receive(on: RunLoop.main).sink { error in
-            print(error)
-        } receiveValue: {[weak self] menu in
-            guard let self = self else { return }
+            self.dinnerMenu = self.getTodaysMenu(foodMenu: menu.dinnerMenu)
+            self.upcomingLunchMenus = self.getFoodForTheWeek(menu: menu, isLunch: true)
             self.upcomingDinnerMenus = self.getFoodForTheWeek(menu: menu)
-            self.dinnerMenu = self.getTodaysFood(foodMenu: menu)
         }.store(in: &subscriptions)
     }
     
     private
-    func getTodaysFood(foodMenu: FoodMenu) -> Food {
-        if let food = foodMenu.food.filter({ $0.date.dateFromString().isToday }).first {
+    func getTodaysMenu(foodMenu: [Food], isLunch: Bool = false) -> Food {
+        if let food = foodMenu.filter({ (isLunch) ? ($0.lunchDate?.dateFromString().isToday == true) : ($0.dinnerDate?.dateFromString().isToday == true) }).first {
             self.showMenuForUpcomingDays = false
             self.showAlert = false
             self.errorText = ""
@@ -110,9 +100,9 @@ private extension MenuCardViewModel {
         else {
             self.showAlert = true
             self.errorText = "Hi! Menu is not updated yet. Please contact Ali Murad from iOS Team to update the menu of this month."
-            return Food(date: "", day: "", mainDish: "", sideDish: "", sweet: "")
+            return Food(dinnerDate: "", day: "", mainDish: "", sideDish: "", sweetDish: "", lunchDate: "")
         }
-         
+
     }
     
     private
@@ -128,7 +118,8 @@ private extension MenuCardViewModel {
 extension MenuCardViewModel {
     
     private
-    func getFoodForTheWeek(menu: FoodMenu)-> [Food] {
-        return menu.food.filter { $0.date.dateFromString().isDateInTheFuture }
+    func getFoodForTheWeek(menu: MenuResponse, isLunch: Bool = false)-> [Food] {
+        let menu = isLunch ? menu.lunchMenu.filter { $0.lunchDate?.dateFromString().isDateInTheFuture == true } : menu.dinnerMenu.filter { $0.dinnerDate?.dateFromString().isDateInTheFuture == true }
+        return menu
     }
 }

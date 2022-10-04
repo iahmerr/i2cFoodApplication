@@ -10,6 +10,7 @@ import Combine
 
 protocol FoodThisWeekViewModelType: ObservableObject {
     var menu: [Food] { get set }
+    var isLunch: Bool { get set }
     var segmentSelection: Int { get set }
 }
 
@@ -19,6 +20,8 @@ final class FoodThisWeekViewModel: FoodThisWeekViewModelType {
     var menu: [Food] = []
     @Published
     var segmentSelection = 0
+    @Published
+    var isLunch: Bool = false
     
     private var lunch: [Food] = []
     private var dinner: [Food] = []
@@ -29,10 +32,10 @@ final class FoodThisWeekViewModel: FoodThisWeekViewModelType {
         self.lunch = lunch
         self.dinner = dinner
         
-        
         $segmentSelection.sink {[weak self] value in
             guard let self = self else { return }
             self.menu = (value == 0) ? self.lunch : self.dinner
+            self.isLunch = (value == 0) ? true : false
         }.store(in: &cancellables)
     }
 }

@@ -36,7 +36,7 @@ struct MenuCardForTheDay<ViewModel: MenuCardViewModelType>: View {
                 Section(header: Text(viewModel.firstSectionHeader)) {
                     DishesCell(viewModel: DishesCellViewModel(menuName: "Main Dish", dishName: viewModel.foodMenu?.mainDish ?? ""))
                     DishesCell(viewModel: DishesCellViewModel(menuName: "Side Dish", dishName: viewModel.foodMenu?.sideDish ?? ""))
-                    DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: viewModel.foodMenu?.sweet ?? ""))
+                    DishesCell(viewModel: DishesCellViewModel(menuName: "Sweet Dish", dishName: viewModel.foodMenu?.sweetDish ?? ""))
                 }
             }.listStyle(.plain).frame(width: UIScreen.main.bounds.width , height: 200, alignment: .center)
             

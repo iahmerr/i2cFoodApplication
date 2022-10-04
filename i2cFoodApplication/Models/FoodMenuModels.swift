@@ -16,6 +16,17 @@ struct MenuResponse: Decodable {
     }
 }
 
+extension MenuResponse {
+    
+    var lunchMenu: [Food] {
+        return Array(lunch.dropFirst())
+    }
+    
+    var dinnerMenu: [Food] {
+        return Array(dinner.dropFirst())
+    }
+}
+
 // MARK: - Dinner
 struct Food: Decodable {
     let dinnerDate: String?
